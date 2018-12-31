@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ToDoMVVM.Views.MainPage"
+             x:Name="page"
+             Title="ToDo List">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Command="{Binding AddToDoCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <ListView ItemsSource="{Binding ToDoList}">
+            <ListView.ItemTemplate> 
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Description}">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Delete"
+                                IsDestructive="true" 
+                                Command="{Binding Source={x:Reference page}, Path=ViewModel.DeleteToDoCommand}"
+                                CommandParameter="{Binding .}" />
+                        </TextCell.ContextActions>
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
