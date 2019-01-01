@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ToDoMVVM.Views.AddToDoPage">
     <ContentPage.Content>
-    </ContentPage.Content>
-    <StackLayout Padding="50">
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Entry Text="{Binding Title, Mode=TwoWay}" Placeholder="Title"/>
-            <Editor Text="{Binding Description, Mode=TwoWay}" Placeholder="Description" VerticalOptions="FillAndExpand"/>
+        <StackLayout Padding="50">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Entry Text="{Binding Title, Mode=TwoWay}" Placeholder="Title"/>
+                <Editor Text="{Binding Description, Mode=TwoWay}" Placeholder="Description" VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+            <Button Text="SAVE" 
+                    Command="{Binding SaveCommand}"
+                    TextColor="#fff"
+                    BorderRadius="0"
+                    BorderColor="Transparent"
+                    BackgroundColor="Silver"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="CenterAndExpand" />
         </StackLayout>
-        <Button Text="SAVE" Command="{Binding SaveCommand}"/>
-    </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

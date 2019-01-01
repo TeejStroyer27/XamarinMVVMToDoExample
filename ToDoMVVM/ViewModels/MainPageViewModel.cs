@@ -12,15 +12,19 @@ namespace ToDoMVVM.ViewModels
     {
         public ObservableCollection<ToDo> ToDoList { get; set; } = new ObservableCollection<ToDo>();
 
+        public ICommand UpdateToDoCommand { get; private set; }
         public ICommand AddToDoCommand { get; private set; }
         public ICommand DeleteToDoCommand { get; private set; }
         public ICommand LoadToDosCommand { get; private set; }
+        public ICommand ViewToDoCommand { get; private set; }
 
         public MainPageViewModel()
         {
+            UpdateToDoCommand = new Command<ToDo>(async t => await _pageService.PushAsync(new UpdateToDoPage(t)));
             AddToDoCommand = new Command(async () => await _pageService.PushAsync(new AddToDoPage()));
             DeleteToDoCommand = new Command<ToDo>(async t => await DeleteContact(t));
             LoadToDosCommand = new Command(async () => await LoadToDos());
+            ViewToDoCommand = new Command<ToDo>(async t => await _pageService.PushModalAsync(new ViewToDoPage(t)));
         }
 
         private async Task LoadToDos()
@@ -43,9 +47,5 @@ namespace ToDoMVVM.ViewModels
                 await App.Database.DeleteItemAsync(todo_DB); 
             }
         }
-
-
-
-
     }
 }

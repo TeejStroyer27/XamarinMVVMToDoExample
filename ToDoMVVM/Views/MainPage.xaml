@@ -6,23 +6,36 @@
              Title="ToDo List">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" Command="{Binding AddToDoCommand}" />
+        <ToolbarItem Text="ADD" Command="{Binding AddToDoCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout>
-        <ListView ItemsSource="{Binding ToDoList}">
-            <ListView.ItemTemplate> 
-                <DataTemplate>
-                    <TextCell Text="{Binding Title}" Detail="{Binding Description}">
-                        <TextCell.ContextActions>
-                            <MenuItem Text="Delete"
-                                IsDestructive="true" 
-                                Command="{Binding Source={x:Reference page}, Path=ViewModel.DeleteToDoCommand}"
-                                CommandParameter="{Binding .}" />
-                        </TextCell.ContextActions>
-                    </TextCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding ToDoList}" 
+                      BackgroundColor="#3e3e3e" 
+                      SeparatorColor="#f3f3f3" 
+                      HasUnevenRows="true">
+                <ListView.ItemTemplate> 
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" Detail="{Binding Description}" TextColor="Lime" DetailColor="#fff">
+                            <TextCell.ContextActions>
+                                <MenuItem Text="Edit"
+                                          Command="{Binding Source={x:Reference page}, Path=ViewModel.UpdateToDoCommand}"
+                                          CommandParameter="{Binding .}" />
+                            
+                                <MenuItem Text="View"
+                                          IsDestructive="false" 
+                                          Command="{Binding Source={x:Reference page}, Path=ViewModel.ViewToDoCommand}"
+                                          CommandParameter="{Binding .}" />
+                                <MenuItem Text="Delete"
+                                    IsDestructive="true" 
+                                    Command="{Binding Source={x:Reference page}, Path=ViewModel.DeleteToDoCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </TextCell.ContextActions>
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

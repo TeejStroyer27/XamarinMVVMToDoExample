@@ -27,16 +27,18 @@ namespace ToDoMVVM.Repository
 
         public Task<int> SaveItemAsync(ToDo item)
         {
-            if (item.ID != 0)
-            {
-                return database.UpdateAsync(item);
-            }
             return database.InsertAsync(item);
+        }
+
+        public Task<int> UpdateItemAsync(ToDo item)
+        {
+            return database.UpdateAsync(item);
         }
 
         public Task<int> DeleteItemAsync(ToDo item)
         {
             return database.DeleteAsync(item);
         }
+
     }
 }

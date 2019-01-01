@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ToDoMVVM.Views.ViewToDoPage"
+             BackgroundColor="#fff">
+    <ContentPage.Content>
+    </ContentPage.Content>
+    <StackLayout Padding="70">
+        <Label Text="{Binding Title}" HorizontalOptions="FillAndExpand" FontSize="Large"/>
+        <Label Text="{Binding Description}" HorizontalOptions="FillAndExpand"/>
+        <Button Text="BACK" 
+                Command="{Binding ExitViewCommand}" 
+                TextColor="#fff"
+                BorderRadius="0"
+                BorderColor="Transparent"
+                BackgroundColor="Silver"
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="CenterAndExpand"/>
+    </StackLayout>
+</ContentPage>
